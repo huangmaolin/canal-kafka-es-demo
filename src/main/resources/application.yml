@@ -1,0 +1,29 @@
+spring:
+  redis:
+    cluster:
+      nodes:
+        - 192.168.254.132:8001
+        - 192.168.254.133:8002
+        - 192.168.254.134:8003
+        - 192.168.254.132:8004
+        - 192.168.254.133:8005
+        - 192.168.254.134:8006
+
+  kafka:
+    # Kafka服务地址
+    bootstrap-servers: 192.168.254.132:9092;192.168.254.133:9092;192.168.254.134:9092
+    consumer:
+      # 指定一个默认的组名
+      group-id: consumer-group1
+      #序列化反序列化
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-serializer: org.apache.kafka.common.serialization.StringDeserializer
+        # 批量抓取
+      batch-size: 65536
+        # 缓存容量
+      buffer-memory: 524288
+server:
+  port: 8080
